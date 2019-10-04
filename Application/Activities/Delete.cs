@@ -29,11 +29,13 @@ namespace Application.Activities
                
                 if (activity == null)
                     throw new Exception("Could not find activity");
+                
+                _context.Remove(activity);
 
                 var success = await _context.SaveChangesAsync() > 0;
 
                 if (success) return Unit.Value;
-                
+
                 throw new Exception("Problem saving changes");
 
 
